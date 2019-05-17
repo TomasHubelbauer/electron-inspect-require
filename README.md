@@ -65,7 +65,7 @@ Upon clicking *inspect*, a Chrome DevTools window will open, connected to the El
 In here, you can issue `require('electron')` and get access to the main context APIs. From here, it is quite easy to make
 the screenshot logic work:
 
-```
+```js
 const electron = require('electron');
 const webContents = electron.webContents.getAllWebContents()[0];
 // This will resolve to `undefined` since we are not showing a window, but would work if we were
