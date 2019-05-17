@@ -34,19 +34,15 @@ I need to get access to the main process _somehow_.
 I know Electron allows having a debugger attached. Since it is based on Chrome, it uses the Chrome debug inspector
 protocol. Attaching a debugger to Electron is quite simple. I will demonstrate this in a development scenario first:
 
-- Create a new Node project: `npm init`
-- Create an `index.js` file which is going to be what the main process runs
-- Install Electron as a development dependency: `npm install electron --save-dev`
-- Set up a `start` NPM command which runs Electron: `electron index.js`
+```sh
+touch index.js
+npx electron index.js --inspect
+```
 
-Now you can run the app by running `npm start`, but we haven't set up any code for displaying the main window, so you
-will only be able to tell the app runs by going to the process explorer.
+We haven't set up any code for displaying the main window, so you will only be able to tell the app runs by going to
+the process explorer, but that is not a problem for debugger-driven inspection.
 
-However, we can already start experimenting with the debugger in this setup. We just need to add the `--inspect` flag
-as Electron is being invoked. We set up the `npm start` command so we just need to add the extra arguments using the
-double dash notation: `npm start -- --inspect`.
-
-When issuing the above command, you should see something like this in the terminal:
+Upon issuing the above commands, you should see something like this in your terminal:
 
 ```
 Debugger listening on ws://127.0.0.1:9229/00000000-0000-0000-0000-000000000000
