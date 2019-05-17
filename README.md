@@ -122,3 +122,5 @@ All in all, this is not a VS Code issue, because it reproduces in Electron prope
 Node this behavior is not present.
 
 I asked for more information in [a Stack Overflow question](https://stackoverflow.com/q/56182168/2715716).
+
+I filed [a GitHub issue](https://github.com/electron/electron/issues/18334) as well.
