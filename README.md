@@ -120,3 +120,14 @@ Node this behavior is not present.
 I asked for more information in [a Stack Overflow question](https://stackoverflow.com/q/56182168/2715716).
 
 I filed [a GitHub issue](https://github.com/electron/electron/issues/18334) as well.
+
+---
+
+One interesting thing to think about, is: when we connect to the Electron instance using DevTools, regardless of whether it is
+the built binary or the Node global, there is always just one JavaScript context - the main context. Why is there no way to
+attach to the rendered process JavaScript context? Is that because we already have access to it through the main context? That's
+where we create the windows etc., which may be enough of an API to get to everything in the renderer process? Or maybe it is
+possible but instead of `--inspect` we would have to somehow start the inspector from the window and its DevTools maybe?
+
+In any case, the context we _do_ get with `--inspect` is the main process one, so that's the one which _should_ have the
+`require`.
