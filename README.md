@@ -131,3 +131,37 @@ possible but instead of `--inspect` we would have to somehow start the inspector
 
 In any case, the context we _do_ get with `--inspect` is the main process one, so that's the one which _should_ have the
 `require`.
+
+---
+
+In my issue, someone said to use `process.mainModule.require` and it works with `npx electron index.js --inspect`!
+
+I was able to successfully capture a screenshot with this code entered into the console:
+
+```javascript
+const electron = process.mainModule.require('electron')
+const allWebContents = electron.webContents.getAllWebContents()
+const webContents = allWebContents[0]
+webContents.loadURL('https://news.ycombinator.com')
+webContents.capturePage(image => webContents.loadURL(image.toDataURL()))
+```
+
+Will this work with VS Code? (We're going straght to the big fish.)
+
+…and sure as hell it does!
+
+```sh
+code --inspect
+# Go to chrome://inspect and open the DevTools
+```
+
+```js
+const electron = process.mainModule.require('electron')
+const fs = process.mainModule.require('fs')
+const webContents = electron.webContents.getAllWebContents()[0] // [1] is the shared process
+webContents.capturePage(image => fs.writeFileSync('screenshot.png', image.toPNG()))
+// Look in `process.cwd()`
+```
+
+This means my evil plan to put together an addition to a VS Code extension test suite which captures screenshots for the README
+each time the test suite is run has a shot at being doable!
