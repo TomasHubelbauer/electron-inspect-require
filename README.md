@@ -1,5 +1,7 @@
 # Electron `--inspect` `require()`
 
+[**WEB**](https://tomashubelbauer.github.io/electron-inspect-require)
+
 I have been at trying to figure out how to capture a screenshot of an Electron window "from within" for a while now.
 
 This problem occured to me when thinking about how I could generate screenshots of the VS Code window with my VS Code
