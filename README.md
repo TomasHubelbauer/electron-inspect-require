@@ -165,5 +165,7 @@ webContents.capturePage(image => fs.writeFileSync('screenshot.png', image.toPNG(
 // Look in `process.cwd()`
 ```
 
-This means my evil plan to put together an addition to a VS Code extension test suite which captures screenshots for the README
-each time the test suite is run has a shot at being doable!
+This means my evil plan to put together an addition to a VS Code extension test suite which
+captures screenshots for the README each time the test suite is run has a shot at being doable!
+
+## To-Do
